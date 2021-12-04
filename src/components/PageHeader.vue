@@ -1,7 +1,6 @@
 <template>
     <div>
 <h1>Welcome to the World of Tweets</h1>
-<button>Toggle Me</button>
     </div>
 </template>
 
