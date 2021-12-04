@@ -1,18 +1,55 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <page-header></page-header>
+    <tweet-item v-for="tweet in tweets" :key="tweet['username']"
+    :desc="tweet['desc']"
+    :username="tweet['username']"
+    :date="tweet['date']">
+
+    </tweet-item>
+  
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import PageHeader from './components/PageHeader.vue'
+import TweetItem from './components/TweetItem.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    PageHeader,
+    TweetItem
+  },
+
+  data() {
+  return {
+    tweets: [
+      {
+        desc: "This is the content of tweet 1",
+        username: "John",
+        date: "03-12-2021"
+        
+      },
+      {
+        desc: "This is the content of tweet 2",
+        username: "Nick",
+        date: "04-12-2021"
+      },
+      {
+        desc: "This is the content of tweet 3",
+        username: "Andrew",
+        date: "05-12-2021"
+      },
+      {
+        desc: "This is the content of tweet 4",
+        username: "Dave",
+        date: "06-12-2021"
+      }
+    ]
   }
+}
+
 }
 </script>
 
