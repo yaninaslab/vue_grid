@@ -1,17 +1,27 @@
 <template>
   <div id="app">
-    
     <page-header></page-header>
     <button @click="switch_view">Toggle Me</button>
-    <div class="tweets">
-    <tweet-item
-      v-for="tweet in tweets"
-      :key="tweet['username']"
-      :desc="tweet['desc']"
-      :username="tweet['username']"
-      :date="tweet['date']"
-    >
-    </tweet-item>
+
+    <div class="tweets_grid" v-if="isGrid">
+      <tweet-item
+        v-for="tweet in tweets"
+        :key="tweet['username']"
+        :desc="tweet['desc']"
+        :username="tweet['username']"
+        :date="tweet['date']"
+      >
+      </tweet-item>
+    </div>
+    <div class="tweets_list" v-else>
+      <tweet-item
+        v-for="tweet in tweets"
+        :key="tweet['username']"
+        :desc="tweet['desc']"
+        :username="tweet['username']"
+        :date="tweet['date']"
+      >
+      </tweet-item>
     </div>
     <user-input
       @post_entered="react_to_post_entered"
@@ -39,8 +49,12 @@ export default {
       });
     },
     switch_view() {
-     
-    }
+      if (this.isGrid === true) {
+        this.isGrid = false;
+      } else {
+        this.isGrid = true;
+      }
+    },
   },
   components: {
     PageHeader,
@@ -50,8 +64,7 @@ export default {
 
   data() {
     return {
-
-      isGrid: false,
+      isGrid: true,
       tweeted_post: undefined,
       yelled_post: undefined,
       tweets: [
@@ -82,9 +95,16 @@ export default {
 </script>
 
 <style>
-.tweets {
+.tweets_grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin-top: 20px;
+  column-gap: 70px;
+  row-gap: 70px;
+  padding: 10px;
+}
+.tweets_list {
+  display: grid;
   margin-top: 20px;
   column-gap: 70px;
   row-gap: 70px;
