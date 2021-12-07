@@ -25,6 +25,7 @@ export default {
 
 <style scoped>
 .tweet_card {
+  background-color: whitesmoke;
   max-width: 250px;
   border-radius: 15px;
   box-shadow: 3px 3px 6px gray;
